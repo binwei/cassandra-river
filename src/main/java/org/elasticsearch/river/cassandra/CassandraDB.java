@@ -19,7 +19,7 @@ package org.elasticsearch.river.cassandra;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.prettyprint.cassandra.model.AllOneConsistencyLevelPolicy;
+import me.prettyprint.cassandra.model.QuorumAllConsistencyLevelPolicy;
 import me.prettyprint.cassandra.serializers.StringSerializer;
 import me.prettyprint.cassandra.service.CassandraHostConfigurator;
 import me.prettyprint.cassandra.service.FailoverPolicy;
@@ -64,7 +64,7 @@ public class CassandraDB {
 		this.keyspace = HFactory.createKeyspace(
 				keyspace, 
 				cluster, 
-				new AllOneConsistencyLevelPolicy(), 
+				new QuorumAllConsistencyLevelPolicy(),
 				FailoverPolicy.ON_FAIL_TRY_ALL_AVAILABLE);
 	}
 
