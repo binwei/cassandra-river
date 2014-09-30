@@ -80,7 +80,12 @@ public class CassandraRiverIntegrationTest {
         //removes data from elasticsearch (both registered river if existing and imported data)
         String[] indices = esClient.admin().cluster().state(new ClusterStateRequest().local(true))
                 .actionGet().getState().getMetaData().getConcreteAllIndices();
-        esClient.admin().indices().prepareDelete(indices).execute().actionGet();
+        try {
+            esClient.admin().indices().prepareDelete(indices).execute().actionGet();
+        }
+        catch (Exception ignored) {
+            ;
+        }
     }
 
     @Test
